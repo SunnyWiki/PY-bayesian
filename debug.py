@@ -138,6 +138,7 @@ clf = MultinomialNB().fit(train_vector, trainTarget_vector)
 bayesian_predict = clf.predict(test_vector)
 wrongNumber = (testTarget_vector != bayesian_predict).sum()
 rightRate = 1 - (float(wrongNumber) / test_vector.shape[0])
+
 print("Right rate out of a total %d is : %f" % (test_vector.shape[0], rightRate))
 
 
