@@ -1,13 +1,13 @@
 #-*- coding: UTF-8 -*-
 
-import bayesian
 import numpy as np
-from sklearn.naive_bayes import MultinomialNB
 
+from sklearn.naive_bayes import MultinomialNB
+import bayesian
 
 trainPath = "/opt/app/highlevel/training/data/TRAIN"
 testPath = "/opt/app/highlevel/training/data/TEST"
-stopwordsPath = "/home/hldev/Work/PYproject/stopwords.txt"
+stopwordsPath = "/home/hldev/Work/PYproject/bayes/stopwords.txt"
 
 stopWords_set = bayesian.getStopwords(stopwordsPath)
 vocabulary_list = bayesian.getVocabularyList(trainPath, stopWords_set)

@@ -16,7 +16,7 @@ from sklearn.naive_bayes import MultinomialNB
 
 trainPath = "/opt/app/highlevel/training/data/TRAIN"
 testPath = "/opt/app/highlevel/training/data/TEST"
-stopwordsPath = "/home/hldev/Work/PYproject/stopwords.txt"
+stopwordsPath = "/home/hldev/Work/PYproject/bayes/stopwords.txt"
 
 categoryDir = os.listdir(trainPath)
 testCatDir = os.listdir(testPath)
