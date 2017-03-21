@@ -5,8 +5,8 @@ import numpy as np
 from sklearn.naive_bayes import MultinomialNB
 
 
-trainPath = "/opt/app/highlevel/trainning/data/TRAIN"
-testPath = "/opt/app/highlevel/trainning/data/TEST"
+trainPath = "/opt/app/highlevel/training/data/TRAIN"
+testPath = "/opt/app/highlevel/training/data/TEST"
 stopwordsPath = "/home/hldev/Work/PYproject/stopwords.txt"
 
 stopWords_set = bayesian.getStopwords(stopwordsPath)
@@ -25,4 +25,5 @@ bayesian_predict = clf.predict(test_vector)
 wrongNumber = (testTarget_vector != bayesian_predict).sum()
 rightRate = 1 - (float(wrongNumber) / test_vector.shape[0])
 
-print("right rate out of a total %d is : %f" % (test_vector.shape[0], rightRate))
+print
+print("Right rate out of a total %d is : %f" % (test_vector.shape[0], rightRate))
