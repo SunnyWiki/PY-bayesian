@@ -14,8 +14,8 @@ from sklearn.naive_bayes import MultinomialNB
 # print("Number of mislabeled points out of a total %d points : %d"% (iris.data.shape[0],(iris.target != y_pred).sum()))
 
 
-trainPath = "/opt/app/highlevel/trainning/data/TRAIN"
-testPath = "/opt/app/highlevel/trainning/data/TEST"
+trainPath = "/opt/app/highlevel/training/data/TRAIN"
+testPath = "/opt/app/highlevel/training/data/TEST"
 stopwordsPath = "/home/hldev/Work/PYproject/stopwords.txt"
 
 categoryDir = os.listdir(trainPath)
