@@ -1,13 +1,14 @@
 #-*- coding: UTF-8 -*-
 
 import numpy as np
-
 from sklearn.naive_bayes import MultinomialNB
 import bayesian
 
 trainPath = "/opt/app/highlevel/training/data/TRAIN"
 testPath = "/opt/app/highlevel/training/data/TEST"
 stopwordsPath = "/home/hldev/Work/PYproject/bayes/stopwords.txt"
+negativeModelPath = "/opt/app/highlevel/training/model/pyNegativeModel.txt"
+positiveModelPath = "/opt/app/highlevel/training/model/pyPositiveModel.txt"
 
 stopWords_set = bayesian.getStopwords(stopwordsPath)
 vocabulary_list = bayesian.getVocabularyList(trainPath, stopWords_set)
@@ -32,14 +33,24 @@ positiveCp_list = list(conditional_prob[1])
 negativePrior = prior_prob[0]
 positivePrior = prior_prob[1]
 
-negativeKeywords, positiveKeywords = bayesian.getKeywords(negativeCp_list, positiveCp_list, vocabulary_list)
+negativeModel, positiveModel = bayesian.getKeywords(negativeCp_list, positiveCp_list, vocabulary_list)
 
-print
-for k in range(30):
-    print negativeKeywords[k][0],
-print
-for m in range(30):
-    print positiveKeywords[m][0],
+# bayesian.writeModel(negativeModelPath, negativeModel)
+# bayesian.writeModel(positiveModelPath, positiveModel)
 
-print
+negativeModel_dict = bayesian.readModel(negativeModelPath)
+positiveModel_dict = bayesian.readModel(positiveModelPath)
+
+negModel_list = []
+posModel_list = []
+
+for key in negativeModel_dict:
+    negModel_list.append((key, float(negativeModel_dict[key])))
+for key in positiveModel_dict:
+    negModel_list.append((key, float(positiveModel_dict[key])))
+
+negModel_list = sorted(negModel_list, key=lambda pair: pair[1], reverse=True)
+posModel_list = sorted(posModel_list, key=lambda pair: pair[1], reverse=True)
+
+
 print("Right rate out of a total %d is : %f" % (test_vector.shape[0], rightRate))

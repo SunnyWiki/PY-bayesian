@@ -154,6 +154,8 @@ for i in range(len(vocab_list)):
 negativeKeywords_list = sorted(negativeKeywords_list, key=lambda pair: pair[1], reverse=True)
 positiveKeywords_list = sorted(positiveKeywords_list, key=lambda pair: pair[1], reverse=True)
 
+
+
 print("Right rate out of a total %d is : %f" % (test_vector.shape[0], rightRate))
 
 

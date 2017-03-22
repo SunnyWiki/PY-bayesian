@@ -131,15 +131,42 @@ def getTestVector(path, vocab_list):
             f.close()
     return test_vector, testTarget_vector
 
+
 def getKeywords(negative_list, positive_list, vocabulary_list):
     negativeKeywords_list = []
     positiveKeywords_list = []
     for i in range(len(vocabulary_list)):
-        negativeKeywords_list.append((vocabulary_list[i], negative_list[i]))
-        positiveKeywords_list.append((vocabulary_list[i], positive_list[i]))
+        negativeKeywords_list.append((vocabulary_list[i], str(negative_list[i])))
+        positiveKeywords_list.append((vocabulary_list[i], str(positive_list[i])))
     negativeKeywords_list = sorted(negativeKeywords_list, key=lambda pair: pair[1], reverse=True)
     positiveKeywords_list = sorted(positiveKeywords_list, key=lambda pair: pair[1], reverse=True)
     return negativeKeywords_list, positiveKeywords_list
+
+
+def writeModel(path, model_list):
+    model_dict = dict(model_list)
+    f = open(path, "w")
+    for key in model_dict:
+        # print key, model_dict[key]
+        keyUnicode = key
+        f.write(key.encode("utf-8"))
+        f.write("\t")
+        f.write(model_dict[keyUnicode])
+        f.write("\n")
+    f.close()
+
+
+def readModel(path):
+    model_dict = {}
+    f = open(path)
+    for line in f.readlines():
+        line = line.strip()
+        data = line.split("\t")
+        model_dict[data[0].decode("utf-8")] = data[1]
+    f.close()
+    return model_dict
+
+
 
 
 
