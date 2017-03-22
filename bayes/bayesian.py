@@ -47,6 +47,7 @@ def getVocabularyList(path, stopWords):
                     vocab_set.add(word)
         finally:
             f.close()
+    vocab_set.remove(u' ')
     vocab_list = list(vocab_set)
     return vocab_list
 
@@ -129,6 +130,17 @@ def getTestVector(path, vocab_list):
         finally:
             f.close()
     return test_vector, testTarget_vector
+
+def getKeywords(negative_list, positive_list, vocabulary_list):
+    negativeKeywords_list = []
+    positiveKeywords_list = []
+    for i in range(len(vocabulary_list)):
+        negativeKeywords_list.append((vocabulary_list[i], negative_list[i]))
+        positiveKeywords_list.append((vocabulary_list[i], positive_list[i]))
+    negativeKeywords_list = sorted(negativeKeywords_list, key=lambda pair: pair[1], reverse=True)
+    positiveKeywords_list = sorted(positiveKeywords_list, key=lambda pair: pair[1], reverse=True)
+    return negativeKeywords_list, positiveKeywords_list
+
 
 
 

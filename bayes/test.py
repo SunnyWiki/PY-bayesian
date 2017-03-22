@@ -25,5 +25,21 @@ bayesian_predict = clf.predict(test_vector)
 wrongNumber = (testTarget_vector != bayesian_predict).sum()
 rightRate = 1 - (float(wrongNumber) / test_vector.shape[0])
 
+conditional_prob = clf.__dict__.get("feature_log_prob_")
+prior_prob = clf.__dict__.get("class_log_prior_")
+negativeCp_list = list(conditional_prob[0])
+positiveCp_list = list(conditional_prob[1])
+negativePrior = prior_prob[0]
+positivePrior = prior_prob[1]
+
+negativeKeywords, positiveKeywords = bayesian.getKeywords(negativeCp_list, positiveCp_list, vocabulary_list)
+
+print
+for k in range(30):
+    print negativeKeywords[k][0],
+print
+for m in range(30):
+    print positiveKeywords[m][0],
+
 print
 print("Right rate out of a total %d is : %f" % (test_vector.shape[0], rightRate))
